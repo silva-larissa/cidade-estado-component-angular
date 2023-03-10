@@ -1,4 +1,4 @@
-import { CidadeEstadoComponent } from './shared/components/cidade-estado/cidade-estado.component';
+import { TesteComponent } from './pages/teste/teste.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginFormComponent, ResetPasswordFormComponent, CreateAccountFormComponent, ChangePasswordFormComponent } from './shared/components';
@@ -26,7 +26,7 @@ const routes: Routes = [
   },
   {
     path: 'cidadeestado',
-    component: CidadeEstadoComponent,
+    component: TesteComponent,
     canActivate: [ AuthGuardService ]
   },
   {

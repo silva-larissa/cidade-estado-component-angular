@@ -1,6 +1,8 @@
+import { Component, OnInit } from '@angular/core';
+import { Estado } from './estado';
+import { Cidade } from './cidade';
 import { ConsultaCidadesService } from './../../services/consulta-cidades.service';
 import { ConsultaEstadoService } from './../../services/consulta-estado.service';
-import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-cidade-estado',
@@ -11,8 +13,8 @@ import { Component, OnInit } from '@angular/core';
 
 export class CidadeEstadoComponent implements OnInit {
 
-  estados: Array<string> = [];
-  cidades: any = [];
+  estados: Array<Estado> = [];
+  cidades: Array<Cidade> = [];
 
   constructor(
     private estadoService: ConsultaEstadoService,
@@ -21,17 +23,16 @@ export class CidadeEstadoComponent implements OnInit {
 
   ngOnInit(){
 
-    this.estadoService
-      .getEstados()
-      .subscribe(resultado => {this.estados = resultado});
-    }
-
-  listarCidades(ev: any){
-    const siglaEstado = ev.selectedItem.sigla;
-    return this.cidadeService
-      .getCidades(siglaEstado)
-      .subscribe(resultado => {console.log(resultado);
-      this.cidades = resultado});
+    this.estadoService.getEstados().subscribe(uf => {
+      this.estados = uf;
+    })
   }
+
+  listarCidades(ev: any) {
+    const uf = ev.selectedItem.sigla;
+    return this.cidadeService
+      .getCidades(uf)
+      .subscribe(resultado => {this.cidades = resultado});
+    }
 
 }

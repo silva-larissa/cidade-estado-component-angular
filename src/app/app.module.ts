@@ -9,11 +9,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { CidadeEstadoComponent } from './shared/components/cidade-estado/cidade-estado.component';
 import { DxSelectBoxModule, DxTemplateModule, DxTextBoxModule } from 'devextreme-angular';
 import { HttpClientModule } from '@angular/common/http';
+import { TesteComponent } from './pages/teste/teste.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CidadeEstadoComponent
+    CidadeEstadoComponent,
+    TesteComponent
   ],
   imports: [
     BrowserModule,

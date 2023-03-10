@@ -1,15 +1,26 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { map } from 'rxjs';
+import { Cidade } from './../components/cidade-estado/cidade';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class ConsultaCidadesService {
 
   constructor(private http: HttpClient) { }
 
-  getCidades(siglaEstado: string){
-    return this.http.get(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${siglaEstado}/municipios`);
+  getCidades(uf: string){
+    return this.http.get<Cidade[]>(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${uf}/municipios`)
+    .pipe(
+      map((cidadesIBGE) => {
+        let cidadesUF: Cidade[] = new Array();
+        cidadesIBGE.forEach(uf => {
+          cidadesUF.push(new Cidade(uf))});
+        return cidadesUF;
+      })
+    )
   }
 
 }

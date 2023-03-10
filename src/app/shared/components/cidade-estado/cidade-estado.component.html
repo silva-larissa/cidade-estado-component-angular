@@ -1,18 +1,19 @@
 <div>
+
   <p>Estado:</p>
    <dx-select-box
       [items]="estados"
       displayExpr="nome"
       valueExpr="sigla"
       placeholder="Selecione o Estado..."
-      [showClearButton]="true"
       (onSelectionChanged)="listarCidades($event)"
+      [showClearButton]="true"
     ></dx-select-box>
 </div>
 
 <div>
   <p>Cidade:</p>
-   <dx-select-box id="municipio"
+   <dx-select-box
       [items]="cidades"
       displayExpr="nome"
       placeholder="Selecione a Cidade..."
